@@ -67,14 +67,6 @@ function HomePage() {
                         because they know it is all good and accounted for.
                     </p>
                 </article>
-
-                <article>
-                    <h1>Monthly Budget</h1>
-                    <p>
-                        <canvas id="myChart" width="400" height="400"></canvas>
-                    </p>
-                    <a href="http://localhost:3000/new_chart">Alternate (new D3JS) chart.</a>
-                </article>
             </div>
         </main>
     );

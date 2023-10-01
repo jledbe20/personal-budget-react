@@ -13,6 +13,7 @@ function Menu() {
             <li><Link to="/contact">Contact</Link></li>
             <li><Link to="/chart">Budget Chart</Link></li>
             <li><Link to="/d3_chart">D3 Chart</Link></li>
+            <li><Link to="/line_chart">Line Chart</Link></li>
             <li><Link to="https://jtledbet.github.io/portfolio.html">Other Projects</Link></li>
             <li><Link to="https://google.com">Google</Link></li>
         </ul>
