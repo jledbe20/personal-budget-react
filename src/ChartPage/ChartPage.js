@@ -65,8 +65,10 @@ export default function PieChart() {
           legend: {
             display: true,
             labels: {
-              color: 'black',
-              fontSize: 30
+            //   color: 'black',
+              font: {
+                size: 18
+              }
             }
           }
         }
