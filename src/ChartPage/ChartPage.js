@@ -76,7 +76,7 @@ export default function PieChart() {
       
       
     return (
-        <div style={{ width: 650, textAlign: "center" }}>
+        <div className="chartDiv" style={{ width: 650, textAlign: "center" }}>
             <h1 style={{ fontFamily: "monospace" }}>
                 Budget Distribution
             </h1>

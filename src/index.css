@@ -574,3 +574,9 @@ input[type=reset] {
 #buttons {
   text-align: center;
 }
+
+
+.chartDiv {
+  width: 65%;
+  margin: auto;
+}
