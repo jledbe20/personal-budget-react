@@ -2,21 +2,21 @@ import React, { useState, useEffect } from "react";
 import { Chart } from 'chart.js/auto';
 import { Pie } from "react-chartjs-2";
 import { ArcElement, CategoryScale, LinearScale } from 'chart.js';
-import { fetchBudgetData } from "../Data/Data";  // Adjust the import path
+import { fetchBudgetData } from "../Data/Data";
 
 Chart.register(ArcElement, CategoryScale, LinearScale);
 
 export default function PieChart() {
     const [chartData, setChartData] = useState(null);
-    const testChartData = {
-        labels: ['eating out', 'rent', 'grocery'],
-        datasets: [{
-          data: [400, 800, 445],
-          backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56'],
-          borderColor: ['#FF6384', '#36A2EB', '#FFCE56',],
-          borderWidth: 1
-        }]
-      };
+    // const testChartData = {
+    //     labels: ['eating out', 'rent', 'grocery'],
+    //     datasets: [{
+    //       data: [400, 800, 445],
+    //       backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56'],
+    //       borderColor: ['#FF6384', '#36A2EB', '#FFCE56',],
+    //       borderWidth: 1
+    //     }]
+    //   };
       
       
     useEffect(() => {
