@@ -1,50 +1,31 @@
-// import React, { useEffect, useState } from "react";
-// import { fetchDailyData } from "../DataComponent/DataComponent"
-// import Chart from "chart.js/auto";
-// import { Line } from "react-chartjs-2";
 
-// const LineChart = () => {
-//   const [dailyData, setDailyData] = useState([]);
+import React from "react";
+import Chart from "chart.js/auto";
+import { Line } from "react-chartjs-2";
 
-//   const fetchApi = async () => {
-//     const dailyData = await fetchDailyData();
-//     setDailyData(dailyData);
-//   };
+// example Chart.js React line chart from
+// https://upmostly.com/tutorials/how-to-use-chart-js-with-react
 
-//   useEffect(() => {
-//     fetchApi();
-//   }, []);
+const labels = ["January", "February", "March", "April", "May", "June"];
 
-//   const lineChart = dailyData[0] ? (
-//     <Line
-//       data={{
-//         labels: dailyData.map(({ date }) =>
-//           new Date(date).toLocaleDateString()
-//         ),
-//         datasets: [
-//           {
-//             data: dailyData.map((data) => data.confirmed),
-//             label: "Infected",
-//             borderColor: "rgb(0, 217, 255)",
-//             fill: true,
-//           },
-//           {
-//             data: dailyData.map((data) => data.deaths),
-//             label: "Deaths",
-//             borderColor: "red",
-//             backgroundColor: "rgb(255, 0, 0)",
-//             fill: true,
-//           },
-//         ],
-//       }}
-//     />
-//   ) : null;
+const data = {
+  labels: labels,
+  datasets: [
+    {
+      label: "My First dataset",
+      backgroundColor: "rgb(255, 99, 132)",
+      borderColor: "rgb(255, 99, 132)",
+      data: [0, 10, 5, 2, 20, 30, 45],
+    },
+  ],
+};
 
-//   return (
-//     <>
-//       <div>{lineChart}</div>
-//     </>
-//   );
-// };
+const LineChart = () => {
+  return (
+    <div>
+      <Line data={data} />
+    </div>
+  );
+};
 
-// export default LineChart;
+export default LineChart;

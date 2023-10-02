@@ -12,7 +12,7 @@ import LoginPage from './LoginPage/LoginPage';
 import ContactPage from './ContactPage/ContactPage';
 import ChartPage from './ChartPage/ChartPage';
 import D3Chart from './D3Chart/D3Chart';
-// import LineChart from './LineChart.js/LineChart';
+import LineChart from './LineChart.js/LineChart';
 // import Data from './Data/Data'
 
 export function App() {
@@ -32,8 +32,8 @@ export function App() {
           </Route>
           <Route path="/d3_chart" element={<D3Chart />}>
           </Route>
-          {/* <Route path="/line_chart" element={<LineChart />}>
-          </Route>           */}
+          <Route path="/line_chart" element={<LineChart />}>
+          </Route>          
           {/* <Route path="/data" element={<Data />}> */}
           {/* </Route>           */}
           <Route path="/" element={<HomePage />}>

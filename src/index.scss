@@ -576,15 +576,70 @@ input[type=reset] {
   text-align: center;
 }
 
+// .container {
+//   width: 65%;
+//   padding-left: 10%;
+//   text-align: center;
+//   margin: auto;
+// }
+
 .chartDiv {
   width: 65%;
   margin: auto;
 }
 
-@mixin transition($property: all, $duration: 0.3s, $timing: ease) {
-  transition: $property $duration $timing;
+.container {
+  width: 100%;
+  max-width: 960px;
+  max-width: 65%;
+  margin: 0 auto;
+  clear: both;
 }
 
-p {
-  @include transition();
+/* contact page */
+
+.header {
+  text-align: center;
+}
+#contact-form ul {
+  margin-bottom: 20px;
+}
+
+#contact-form li {
+  margin-bottom: 10px;
+}
+
+label,
+input[type=text],
+input[type=email],
+textarea {
+  display: block;
+  width: 100%;
+}
+
+input[type=text],
+input[type=email],
+textarea {
+  height: 35px;
+  padding: 0 10px;
+  font-size: 14px;
+  border: 1px solid #dddddd;
+}
+
+textarea {
+  height: 200px;
+}
+
+input[class=submit],
+input[type=reset] {
+  padding: 10px 30px;
+  font-size: 18px;
+  color: #ffffff;
+  cursor: pointer;
+  background: darkslateblue;
+  border: 0 none;
+}
+
+#buttons {
+  text-align: center;
 }
