@@ -528,6 +528,7 @@ td, th {
   padding: 5px;
   margin-right: 20px;
   margin-bottom: 15ppx;
+  
 }
 
 /* contact page */
@@ -575,8 +576,15 @@ input[type=reset] {
   text-align: center;
 }
 
-
 .chartDiv {
   width: 65%;
   margin: auto;
+}
+
+@mixin transition($property: all, $duration: 0.3s, $timing: ease) {
+  transition: $property $duration $timing;
+}
+
+p {
+  @include transition();
 }
