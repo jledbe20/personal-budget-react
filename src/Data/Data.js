@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const url = "http://localhost:3001/budget";
+const url = "http://localhost:3000/budget";
 
 export const fetchBudgetData = async () => {
   try {
