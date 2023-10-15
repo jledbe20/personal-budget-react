@@ -1,0 +1,11 @@
+{"budget_items":
+    [
+    {"id": 0,"item": "food", "cost": 400},
+    {"id": 1,"item": "rent", "cost": 800},
+    {"id": 2,"item": "grocery", "cost": 445},
+    {"id": 3,"item": "gasoline", "cost": 300},
+    {"id": 4,"item": "games", "cost": 240},
+    {"id": 5,"item": "movies","cost": 225},
+    {"id": 6,"item": "misc", "cost": 250}
+    ]
+}
