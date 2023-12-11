@@ -9,8 +9,8 @@ const BudgetTable = () => {
     // Fetch items from the server
     useEffect(() => {
         axios.get('http://localhost:5000/budget')
-            .then(response => setItems(response.data))
-            .catch(error => setError(error)); // Set error state if request fails
+             .then(response => setItems(response.data))
+             .catch(error => setError(error)); // Set error state if request fails
     }, []);
 
     // Handle input change
@@ -88,7 +88,7 @@ const BudgetTable = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    {items && items.map(item => (
+                    {items.map((item, index) => (
                         <tr key={index}>
                             <td>{item.title}</td>
                             <td>{item.value}</td>
