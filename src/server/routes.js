@@ -139,12 +139,13 @@ function transformDate(dateObj) {
 }
 
 // After all other route definitions
-router.use('*', (req, res) => {
-    res.status(404).send('Endpoint not found');
-});
-
 router.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, '../../build', 'index.html'));
   });
   
+router.use('*', (req, res) => {
+    res.status(404).send('Endpoint not found');
+});
+
+
 module.exports = router;
