@@ -14,11 +14,11 @@ router.get('/', (req, res) => {
 });
 
 router.post('/signup', async (req, res) => {
-    console.log("Signup route reached");
+    console.log("Signup route reached.");
     try {
         const hashedPassword = await bcrypt.hash(req.body.password, 10);
         const date = transformDate(new Date());
-        console.log("transformed date:", date)
+        console.log("Transformed date:", date)
         const user = new User({
             username: req.body.username,
             password: hashedPassword
@@ -33,6 +33,7 @@ router.post('/signup', async (req, res) => {
 
 
 router.post('/login', async (req, res) => {
+    console.log("Login route reached.");
     try {
         const user = await User.findOne({ username: req.body.username });
         if (user == null) {
@@ -60,6 +61,7 @@ router.get('/protected', authenticateToken, (req, res) => {
 const BudgetItem = require('./models/BudgetItem');
 
 router.get('/budget', async (req, res) => {
+    console.log("Budget GET route reached.");
     try {
         const data = await BudgetItem.find();
         res.json(data);
@@ -69,7 +71,12 @@ router.get('/budget', async (req, res) => {
     }
 });
 
+// Assuming 'app' is your express app and 'BudgetItem' is your mongoose model
+
+
 router.post('/budget', async (req, res) => {
+    console.log("Budget POST route reached.");
+    console.log(req.body); // Log the request body to see what is being sent
     const newItem = new BudgetItem({
         custom_id:  req.body.custom_id,
         title:      req.body.title,
@@ -81,14 +88,16 @@ router.post('/budget', async (req, res) => {
         const savedItem = await newItem.save();
         res.status(201).json(savedItem);
     } catch (err) {
+        console.error('Error adding item:', err); // Log the detailed error
         res.status(400).json({ message: err.message });
     }
 });
 
+
 // Transform date
 function transformDate(dateObj) {
     let oldDate = dateObj;
-    console.log("transforming date...");
+    console.log("Transforming date...");
 
     const year = dateObj.getFullYear();
     const month = String(dateObj.getMonth() + 1).padStart(2, '0'); // Months are 0-based

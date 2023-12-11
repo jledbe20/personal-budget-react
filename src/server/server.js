@@ -12,6 +12,10 @@ app.use(cors());
 app.use(express.json());
 app.use('/' , express.static('public')); // Serve static files from the 'public' directory
 
+// Routes
+const routes = require('./routes');
+app.use('/', routes); 
+
 // MySQL Database Connection (assuming you still need this for a part of your app)
 const db = mysql.createPool({
     host: process.env.DB_HOST,
@@ -36,9 +40,7 @@ mongoose.connect(mongoDBUri, {
 .then(() => console.log('Connected to MongoDB'))
 .catch(error => console.error('Failed to connect to MongoDB', error));
 
-// Routes
-const routes = require('./routes');
-app.use('/', routes); 
+
 
 // Start Server
 const PORT = process.env.PORT || 5000;

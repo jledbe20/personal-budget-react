@@ -7,6 +7,7 @@ function Menu() {
     <nav id="masthead">
       <ul>
         <li><Link to="/">Home</Link></li>
+        <li><Link to="/table">Table</Link></li>
         <li><Link to="/chart">Budget Chart</Link></li>
         <li><Link to="/d3_chart">D3 Chart</Link></li>
         <li><Link to="/bar_chart">Bar Chart</Link></li>

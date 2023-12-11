@@ -14,6 +14,7 @@ import ContactPage from './pages/ContactPage/ContactPage';
 import ChartPage from './pages/ChartPage/ChartPage';
 import D3Chart from './pages/D3ChartPage/D3Chart';
 import BarChart from './pages/BarChartPage/BarChart';
+import TablePage from './pages/TablePage/TablePage';
 // import Data from './Data/Data'
 
 export function App() {
@@ -36,6 +37,8 @@ export function App() {
           <Route path="/d3_chart" element={<D3Chart />}>
           </Route> 
           <Route path="/bar_chart" element={<BarChart />}>
+          </Route>
+          <Route path="/table" element={<TablePage />}>
           </Route>
           {/* <Route path="/data" element={<Data />}> */}
           {/* </Route>           */}
