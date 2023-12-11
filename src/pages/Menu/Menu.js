@@ -6,60 +6,53 @@ import './Menu.scss';
 import { useNavigate } from 'react-router-dom';
 
 function Menu() {
-    const navigate = useNavigate();
+  const navigate = useNavigate();
+  const [isLoggedIn, setIsLoggedIn] = useState(localStorage.getItem('auth-token') !== null);
 
-    const [isLoggedIn, setIsLoggedIn] = useState(localStorage.getItem('auth-token') !== null);
+  const handleLogout = async () => {
+    localStorage.removeItem('auth-token');
 
-    const handleLogout = async () => {
-        // Clear any authentication tokens or user data
-        localStorage.removeItem('auth-token');
-        setIsLoggedIn(false);
+    // Send a POST request to the server to handle logout
+    try {
+      await axios.post('/api/logout');
+      localStorage.removeItem('auth-token');
+      localStorage.removeItem('user-data');
+      setIsLoggedIn(false);
+      navigate('/login');
+    } catch (error) {
+      console.error('Logout failed', error);
+    }
+  };
 
-        // Send a POST request to the server to handle logout
-        try {
-            await axios.post('/api/logout');
-            localStorage.removeItem('auth-token');
-            localStorage.removeItem('user-data');
+  return (
+    <nav id="masthead">
+      <ul>
+        <li><Link to="/">Home</Link></li>
+        <li><Link to="/dashboard">Dashboard</Link></li>
+        <li><Link to="/chart">Budget Chart</Link></li>
+        <li><Link to="/d3_chart">D3 Chart</Link></li>
+        <li><Link to="/bar_chart">Bar Chart</Link></li>
 
-            navigate('/login');
+        <li className="dropdown">
+          <button className="dropbtn">Account</button>
+          <div className="dropdown-content">
+            <Link to="/login">Login</Link>
+            <Link to="/signup">Signup</Link>
+            <button onClick={handleLogout}>Logout</button>
+          </div>
+        </li>
 
-
-            // Redirect to home or login page upon successful logout
-            window.location.href = '/';
-        } catch (error) {
-            console.error('Logout failed', error);
-        }
-    };
-
-    return (
-        <nav id="masthead">
-            <ul>
-                <li><Link to="/">Home</Link></li>
-                <li><Link to="/dashboard">Dashboard</Link></li>
-                <li><Link to="/chart">Budget Chart</Link></li>
-                <li><Link to="/d3_chart">D3 Chart</Link></li>
-                <li><Link to="/bar_chart">Bar Chart</Link></li>
-
-                <li className="dropdown">
-                    <button className="dropbtn">Account</button>
-                    <div className="dropdown-content">
-                        <Link to="/api/login">Login</Link>
-                        <Link to="/api/login">Logout</Link>
-                        <Link to="/api/signup">Signup</Link>
-                    </div>
-                </li>
-
-                <li className="dropdown">
-                    <button className="dropbtn">More</button>
-                    <div className="dropdown-content">
-                        <Link to="/about">About</Link>
-                        <Link to="/contact">Contact</Link>
-                        <a href="https://jtledbet.github.io/portfolio.html" target="_blank" rel="noopener noreferrer">Other Projects</a>
-                    </div>
-                </li>
-            </ul>
-        </nav>
-    );
+        <li className="dropdown">
+          <button className="dropbtn">More</button>
+          <div className="dropdown-content">
+            <Link to="/about">About</Link>
+            <Link to="/contact">Contact</Link>
+            <a href="https://jtledbet.github.io/portfolio.html" target="_blank" rel="noopener noreferrer">Other Projects</a>
+          </div>
+        </li>
+      </ul>
+    </nav>
+  );
 }
 
 export default Menu;
