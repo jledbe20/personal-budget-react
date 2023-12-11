@@ -18,7 +18,7 @@ const SignupPage = () => {
         if (username && password) {
             try {
                 // Replace with your server's URL and endpoint as needed
-                const response = await axios.post('http://localhost:5000/signup', {
+                const response = await axios.post('/signup', {
                     username,
                     password
                 });

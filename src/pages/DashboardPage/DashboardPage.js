@@ -8,7 +8,7 @@ const BudgetTable = () => {
 
     // Fetch items from the server
     useEffect(() => {
-        axios.get('http://localhost:5000/budget')
+        axios.get('/budget')
              .then(response => setItems(response.data))
              .catch(error => setError(error)); // Set error state if request fails
     }, []);

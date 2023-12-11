@@ -14,7 +14,7 @@ function Menu() {
 
     // Send a POST request to the server to handle logout
     try {
-      await axios.post('http://localhost:5000/logout');
+      await axios.post('/logout');
       // Redirect to home or login page upon successful logout
       window.location.href = '/';
     } catch (error) {
