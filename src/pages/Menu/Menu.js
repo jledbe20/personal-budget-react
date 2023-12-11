@@ -34,15 +34,9 @@ function Menu() {
         <li className="dropdown">
           <button className="dropbtn">Account</button>
           <div className="dropdown-content">
-            {isLoggedIn ? (
-              <button onClick={handleLogout}>Logout</button>
-            ) : (
-              <>
                 <Link to="/login">Login</Link>
                 <Link to="/login">Logout</Link>
                 <Link to="/signup">Signup</Link>
-              </>
-            )}
           </div>
         </li>
 

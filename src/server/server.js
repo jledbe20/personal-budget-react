@@ -4,7 +4,6 @@ import cors from 'cors';
 import path from 'path';
 import dotenv from 'dotenv';
 import bodyParser from 'body-parser';
-import { MongoClient } from 'mongodb';
 
 dotenv.config();
 

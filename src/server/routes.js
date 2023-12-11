@@ -12,7 +12,6 @@ import BudgetItem from './models/BudgetItem';
 dotenv.config();
 
 const router = Router();
-const app = express();
 
 // Correct the static files middleware to serve the build directory
 router.use(express.static(path.join(__dirname, '../../build')));
@@ -25,7 +24,7 @@ router.use(express.urlencoded({ extended: true }));
 //     res.send('Hello, world!');
 // });
 
-router.post('api/signup', async (req, res) => {
+router.post('/api/signup', async (req, res) => {
     console.log("Signup route reached.");
     try {
         const hashedPassword = await bcryptjs.hash(req.body.password, 10);
@@ -44,7 +43,7 @@ router.post('api/signup', async (req, res) => {
 });
 
 
-router.post('api/login', async (req, res) => {
+router.post('/api/login', async (req, res) => {
     console.log("Login route reached.");
     try {
         const user = await User.findOne({ username: req.body.username });
@@ -65,7 +64,7 @@ router.post('api/login', async (req, res) => {
 });
 
 
-router.post('api/logout', (req, res) => {
+router.post('/api/logout', (req, res) => {
     console.log("Logout route reached.");
     // For JWT, there isn't much to do here since the token is stored client-side.
     // If using sessions, you would destroy the session here.
@@ -78,13 +77,13 @@ router.post('api/logout', (req, res) => {
 });
 
 
-router.get('api/protected', authenticateToken, (req, res) => {
+router.get('/api/protected', authenticateToken, (req, res) => {
     // This route is now protected with JWT
     res.send('Protected data');
 });
 
 
-router.get('api/budget', async (req, res) => {
+router.get('/api/budget', async (req, res) => {
     console.log("Budget GET route reached.");
     try {
         const data = await BudgetItem.find();
@@ -98,7 +97,7 @@ router.get('api/budget', async (req, res) => {
 // Assuming 'router' is your express router and 'BudgetItem' is your mongoose model
 
 
-router.post('api/budget', async (req, res) => {
+router.post('/api/budget', async (req, res) => {
     console.log("Budget POST route reached.");
     console.log(req.body); // Log the request body to see what is being sent
     const newItem = new BudgetItem({
@@ -135,12 +134,6 @@ function transformDate(dateObj) {
     console.log("old date:", oldDate, "\nnew date:", date)
     return date;
 }
-
-// After all other route definitions
-router.get('*', (req, res) => {
-    res.status(404).send('Endpoint not found');
-    // res.sendFile(path.join(__dirname, '../../build/index.html'));
-});
 
 router.use('*', (req, res) => {
     res.status(404).send('Endpoint not found');
