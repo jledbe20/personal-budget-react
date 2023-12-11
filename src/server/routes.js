@@ -7,10 +7,10 @@ const router = express.Router();
 require('dotenv').config();
 
 const path = require('path');
-const app = express();
+// const app = express();
 
 // Correct the static files middleware to serve the build directory
-app.use(express.static(path.join(__dirname, '../../build')));
+router.use(express.static(path.join(__dirname, '../../build')));
 
 // Define routes
 router.get('/', (req, res) => {
