@@ -19,9 +19,8 @@ function LoginPage() {
             localStorage.setItem('auth-token', response.data);
             
             // Update the isLoggedIn state if you have it
-            // setIsLoggedIn(true); <- You would need to manage this state in context or a higher-level component
 
-            // Redirect to the "Table" page
+            // Redirect to the dashboard
             navigate('/dashboard');
         } catch (error) {
             console.error('Login failed', error.response || error);
