@@ -1,6 +1,7 @@
 const express = require('express');
 const bcryptjs = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+const cors = require('cors');
 const User = require('./models/User');
 const authenticateToken = require('./auth'); // Adjust the path as needed
 const router = express.Router();
@@ -10,7 +11,10 @@ const path = require('path');
 const app = express();
 
 // Correct the static files middleware to serve the build directory
-app.use(express.static(path.join(__dirname, '../../build')));
+router.use(express.static(path.join(__dirname, '../../build')));
+router.use(cors);
+router.use(express.json());
+router.use(express.urlencoded({ extended: true }));
 
 // Define routes
 // router.get('/', (req, res) => {
