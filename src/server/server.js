@@ -160,8 +160,8 @@ db.getConnection((err, connection) => {
 const mongoDBUri = process.env.MONGO_URI || 'mongodb+srv://Fabio:Nolasco@cluster0.iim2erf.mongodb.net/'
 
 mongoose.connect(mongoDBUri, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
+    // useNewUrlParser: true,
+    // useUnifiedTopology: true,
 })
 .then(() => console.log('Connected to MongoDB Atlas'))
 .catch(error => console.error('Failed to connect to MongoDB Atlas', error));
