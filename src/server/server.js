@@ -74,9 +74,6 @@ mongoose.connect(mongoDBUri, {
     .then(() => console.log('Connected to MongoDB Atlas'))
     .catch(error => console.error('Failed to connect to MongoDB Atlas', error));
 
-
-
-
 // Start Server
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {

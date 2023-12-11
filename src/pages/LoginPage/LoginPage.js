@@ -22,7 +22,7 @@ function LoginPage() {
             // setIsLoggedIn(true); <- You would need to manage this state in context or a higher-level component
 
             // Redirect to the "Table" page
-            navigate('/table');
+            navigate('/dashboard');
         } catch (error) {
             console.error('Login failed', error.response || error);
         }
