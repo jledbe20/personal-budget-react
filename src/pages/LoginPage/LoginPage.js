@@ -10,7 +10,7 @@ function LoginPage() {
 
     const handleLogin = async () => {
         try {
-            const response = await axios.post('/login', {
+            const response = await axios.post('api/login', {
                 username,
                 password
             });
