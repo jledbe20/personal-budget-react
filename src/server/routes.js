@@ -7,15 +7,15 @@ const router = express.Router();
 require('dotenv').config();
 
 const path = require('path');
-// const app = express();
+const app = express();
 
 // Correct the static files middleware to serve the build directory
-router.use(express.static(path.join(__dirname, '../../build')));
+app.use(express.static(path.join(__dirname, '../../build')));
 
 // Define routes
-router.get('/', (req, res) => {
-    res.send('Hello, world!');
-});
+// router.get('/', (req, res) => {
+//     res.send('Hello, world!');
+// });
 
 router.post('/signup', async (req, res) => {
     console.log("Signup route reached.");
