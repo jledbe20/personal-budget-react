@@ -43,9 +43,9 @@ function Menu() {
                 <li className="dropdown">
                     <button className="dropbtn">Account</button>
                     <div className="dropdown-content">
-                        <Link to="/login">Login</Link>
-                        <Link to="/login">Logout</Link>
-                        <Link to="/signup">Signup</Link>
+                        <Link to="/api/login">Login</Link>
+                        <Link to="/api/login">Logout</Link>
+                        <Link to="/api/signup">Signup</Link>
                     </div>
                 </li>
 
