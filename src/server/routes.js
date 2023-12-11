@@ -12,11 +12,6 @@ const app = express();
 // Correct the static files middleware to serve the build directory
 app.use(express.static(path.join(__dirname, '../../build')));
 
-// Correct the catch-all route handler to serve index.html on any non-static request
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '../../build', 'index.html'));
-});
-
 // Define routes
 router.get('/', (req, res) => {
     res.send('Hello, world!');
