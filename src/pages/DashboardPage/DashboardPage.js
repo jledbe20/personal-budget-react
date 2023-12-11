@@ -4,12 +4,13 @@ import axios from 'axios';
 const BudgetTable = () => {
     const [items, setItems] = useState([]);
     const [newItem, setNewItem] = useState({ title: '', value: '', color: '#000000' });
+    const [error, setError] = useState(null); // Add error state
 
     // Fetch items from the server
     useEffect(() => {
         axios.get('http://localhost:5000/budget')
-             .then(response => setItems(response.data))
-             .catch(error => console.error('Error fetching data:', error));
+            .then(response => setItems(response.data))
+            .catch(error => setError(error)); // Set error state if request fails
     }, []);
 
     // Handle input change
@@ -51,6 +52,7 @@ const BudgetTable = () => {
 
     return (
         <div>
+            {error && <p>Error fetching data: {error.message}</p>}
             <form onSubmit={handleSubmit}>
                 <input
                     type="text"
@@ -86,7 +88,7 @@ const BudgetTable = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    {items.map((item, index) => (
+                    {items && items.map(item => (
                         <tr key={index}>
                             <td>{item.title}</td>
                             <td>{item.value}</td>

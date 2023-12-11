@@ -39,34 +39,14 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(__dirname));
 const JWT_TIMEOUT = process.env.JWT_TIMEOUT || '3m'; // default to 3 minutes
 
+// Correct the static files middleware to serve the build directory
+app.use(express.static(path.join(__dirname, '../../build')));
+
+
 // Routes
 const routes = require('./routes');
 app.use('/', routes);
 
-app.use(express.static(path.join(__dirname, 'build')));
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'build', 'index.html'));
-});
-
-
-// app.get('/', (req, res) => {
-//     return res.sendFile(path.join(__dirname, 'index.html'));
-// });
-
-app.use(function (err, req, res, next) {
-    // console.log("Unauthorized error?", err.name === 'UnauthorizedError');
-    // console.log(err);
-    if (err.name === 'UnauthorizedError') {
-        return res.status(401).json({
-            success: false,
-            officialError: err,
-            err: "Username or password is incorrect. (jwtMW error)"
-        });
-    }
-    else {
-        next(err);
-    }
-});
 
 // MySQL Database Connection 
 // const db = mysql.createPool({

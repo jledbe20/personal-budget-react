@@ -6,6 +6,16 @@ const authenticateToken = require('./auth'); // Adjust the path as needed
 const router = express.Router();
 require('dotenv').config();
 
+const path = require('path');
+const app = express();
+
+// Correct the static files middleware to serve the build directory
+app.use(express.static(path.join(__dirname, '../../build')));
+
+// Correct the catch-all route handler to serve index.html on any non-static request
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../../build', 'index.html'));
+});
 
 // Define routes
 router.get('/', (req, res) => {
@@ -133,4 +143,8 @@ router.use('*', (req, res) => {
     res.status(404).send('Endpoint not found');
 });
 
+router.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, '../../build', 'index.html'));
+  });
+  
 module.exports = router;
