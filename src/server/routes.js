@@ -6,7 +6,6 @@ const authenticateToken = require('./auth'); // Adjust the path as needed
 const router = express.Router();
 require('dotenv').config();
 
-// ... other middleware ...
 
 // Define routes
 router.get('/', (req, res) => {
@@ -53,10 +52,27 @@ router.post('/login', async (req, res) => {
 });
 
 
+router.post('/logout', (req, res) => {
+    console.log("Logout route reached.");
+    // For JWT, there isn't much to do here since the token is stored client-side.
+    // If using sessions, you would destroy the session here.
+    // If using a blacklist, you would add the token to the blacklist here.
+
+    localStorage.removeItem('auth-token');
+    localStorage.removeItem('user-data');
+    history.push('/login');
+    res.status(200).send('Logged out successfully');
+});
+
+
 router.get('/protected', authenticateToken, (req, res) => {
     // This route is now protected with JWT
     res.send('Protected data');
 });
+
+const routes = require('./routes');
+// router.use('/', routes); 
+
 
 const BudgetItem = require('./models/BudgetItem');
 
@@ -71,17 +87,17 @@ router.get('/budget', async (req, res) => {
     }
 });
 
-// Assuming 'app' is your express app and 'BudgetItem' is your mongoose model
+// Assuming 'router' is your express router and 'BudgetItem' is your mongoose model
 
 
 router.post('/budget', async (req, res) => {
     console.log("Budget POST route reached.");
     console.log(req.body); // Log the request body to see what is being sent
     const newItem = new BudgetItem({
-        custom_id:  req.body.custom_id,
-        title:      req.body.title,
-        value:      req.body.value,
-        color:      req.body.color
+        custom_id: req.body.custom_id,
+        title: req.body.title,
+        value: req.body.value,
+        color: req.body.color
     });
 
     try {
@@ -115,6 +131,6 @@ function transformDate(dateObj) {
 // After all other route definitions
 router.use('*', (req, res) => {
     res.status(404).send('Endpoint not found');
-  });
+});
 
 module.exports = router;

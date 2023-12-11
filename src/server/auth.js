@@ -1,4 +1,4 @@
-const jwt = require('jsonwebtoken');
+
 require('dotenv').config();
 
 function authenticateToken(req, res, next) {
@@ -13,5 +13,7 @@ function authenticateToken(req, res, next) {
         res.status(400).send('Invalid Token');
     }
 }
+
+
 
 module.exports = authenticateToken;
