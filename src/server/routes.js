@@ -70,13 +70,12 @@ router.post('/logout', (req, res) => {
 });
 
 
+const routes = require('./routes');
+
 router.get('/protected', authenticateToken, (req, res) => {
     // This route is now protected with JWT
     res.send('Protected data');
 });
-
-const routes = require('./routes');
-// router.use('/', routes); 
 
 
 const BudgetItem = require('./models/BudgetItem');
@@ -135,7 +134,7 @@ function transformDate(dateObj) {
 
 // After all other route definitions
 router.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, '../../build', 'index.html'));
+    res.sendFile(path.join(__dirname, '../../build' + 'index.html'));
   });
   
 router.use('*', (req, res) => {
