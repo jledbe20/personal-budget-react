@@ -43,11 +43,15 @@ const JWT_TIMEOUT = process.env.JWT_TIMEOUT || '3m'; // default to 3 minutes
 const routes = require('./routes');
 app.use('/', routes);
 
-
-
-app.get('/', (req, res) => {
-    return res.sendFile(path.join(__dirname, 'index.html'));
+app.use(express.static(path.join(__dirname, 'build')));
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'build', 'index.html'));
 });
+
+
+// app.get('/', (req, res) => {
+//     return res.sendFile(path.join(__dirname, 'index.html'));
+// });
 
 app.use(function (err, req, res, next) {
     // console.log("Unauthorized error?", err.name === 'UnauthorizedError');
