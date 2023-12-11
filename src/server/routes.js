@@ -135,7 +135,7 @@ function transformDate(dateObj) {
 // After all other route definitions
 router.get('*', (req, res) => {
     // res.sendFile(path.join(__dirname, '../../build/' + 'index.html'));
-    res.sendFile(path.join(__dirname, 'index.html'));
+    res.sendFile(path.join(__dirname, '../../build/index.html'));
   });
   
 router.use('*', (req, res) => {
