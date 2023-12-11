@@ -35,7 +35,7 @@ const BudgetTable = () => {
                 color: newItem.color, // Include the color
             };
 
-            const response = await axios.post('http://localhost:5000/budget', itemToSubmit, {
+            const response = await axios.post('/budget', itemToSubmit, {
                 headers: {
                     'Content-Type': 'application/json'
                 }
