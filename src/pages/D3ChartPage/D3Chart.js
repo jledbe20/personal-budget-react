@@ -4,20 +4,24 @@ import { fetchBudgetData } from '../Data/Data';
 
 function D3PieChart() {
     const ref = useRef();
-    const [budgetItems, setBudgetItems] = useState(null);
+    const [budgetItems, setBudgetItems] = useState([]);
 
     useEffect(() => {
-        // get budget data via axios (in the Data component)
-        fetchBudgetData()
-            .then(data => {
-                setBudgetItems(data.budget_items);
-                console.log("data.budget_items: ", data.budget_items)
-            })
-            .catch(error => console.error('Error fetching data:', error));
+        const fetchAPI = async () => {
+            try {
+                const data = await fetchBudgetData();
+                setBudgetItems(data); // Directly set the fetched data
+                console.log("budgetItems: ", data);
+            } catch (error) {
+                console.error('Error fetching data:', error);
+            }
+        };
+
+        fetchAPI();
     }, []);
 
     useEffect(() => {
-        if (budgetItems) {
+        if (budgetItems && budgetItems.length > 0) {
             const width = 500;
             const height = 500;
             const radius = Math.min(width, height) / 2;
@@ -26,11 +30,11 @@ function D3PieChart() {
                 .attr("width", width)
                 .attr("height", height)
                 .append("g")
-                .attr("transform", `translate(${width / 2},${height / 2})`)
+                .attr("transform", `translate(${width / 2},${height / 2})`);
 
             const color = d3.scaleOrdinal(d3.schemeCategory10);
 
-            const pie = d3.pie().value(d => d.cost);
+            const pie = d3.pie().value(d => d.value); // use `value` instead of `cost`
             const arcs = pie(budgetItems);
 
             const arcGenerator = d3.arc().innerRadius(0).outerRadius(radius);
@@ -47,14 +51,13 @@ function D3PieChart() {
                 .enter()
                 .append("text")
                 .attr("transform", d => `translate(${arcGenerator.centroid(d)})`)
-                .text(d => d.data.item)
+                .text(d => d.data.title) // use `title` instead of `item`
                 .style("text-anchor", "middle")
                 .style("font-size", 14);
-                
         }
     }, [budgetItems]);
 
-    if (!budgetItems) {
+    if (!budgetItems || budgetItems.length === 0) {
         return <div>Loading...</div>;
     }
 

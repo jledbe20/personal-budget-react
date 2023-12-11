@@ -541,15 +541,15 @@ td, th {
   margin-bottom: 10px;
 }
 
-label,
-input[type=text],
-input[type=email],
+#contact-form label,
+#contact form input[type=text],
+#contact form input[type=email],
 textarea {
   display: block;
   width: 50%;
 }
 
-input[type=text],
+#contact form input[type=text],
 input[type=email],
 textarea {
   height: 35px;
@@ -558,11 +558,11 @@ textarea {
   border: 1px solid #dddddd;
 }
 
-textarea {
+#contact form textarea {
   height: 200px;
 }
 
-input[type=submit],
+#contact form input[type=submit],
 input[type=reset] {
   padding: 10px 30px;
   font-size: 18px;
@@ -572,7 +572,7 @@ input[type=reset] {
   border: 0 none;
 }
 
-#buttons {
+#contact form #buttons {
   text-align: center;
 }
 
@@ -594,52 +594,4 @@ input[type=reset] {
   max-width: 65%;
   margin: 0 auto;
   clear: both;
-}
-
-/* contact page */
-
-.header {
-  text-align: center;
-}
-#contact-form ul {
-  margin-bottom: 20px;
-}
-
-#contact-form li {
-  margin-bottom: 10px;
-}
-
-label,
-input[type=text],
-input[type=email],
-textarea {
-  display: block;
-  width: 100%;
-}
-
-input[type=text],
-input[type=email],
-textarea {
-  height: 35px;
-  padding: 0 10px;
-  font-size: 14px;
-  border: 1px solid #dddddd;
-}
-
-textarea {
-  height: 200px;
-}
-
-input[class=submit],
-input[type=reset] {
-  padding: 10px 30px;
-  font-size: 18px;
-  color: #ffffff;
-  cursor: pointer;
-  background: darkslateblue;
-  border: 0 none;
-}
-
-#buttons {
-  text-align: center;
 }

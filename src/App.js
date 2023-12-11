@@ -3,16 +3,17 @@ import {
   BrowserRouter as Router,
   Route, Routes
 } from "react-router-dom";
-import Menu from './Menu/Menu';
-import Hero from './Hero/Hero';
-import HomePage from './HomePage/HomePage';
-import Footer from './Footer/Footer';
-import AboutPage from './AboutPage/AboutPage';
-import LoginPage from './LoginPage/LoginPage';
-import ContactPage from './ContactPage/ContactPage';
-import ChartPage from './ChartPage/ChartPage';
-import D3Chart from './D3Chart/D3Chart';
-import LineChart from './LineChart.js/LineChart';
+import Menu from './pages/Menu/Menu';
+import Hero from './pages/Hero/Hero';
+import HomePage from './pages/HomePage/HomePage';
+import Footer from './pages/Footer/Footer';
+import AboutPage from './pages/AboutPage/AboutPage';
+import SignupPage from './pages/SignupPage/SignupPage';
+import LoginPage from './pages/LoginPage/LoginPage';
+import ContactPage from './pages/ContactPage/ContactPage';
+import ChartPage from './pages/ChartPage/ChartPage';
+import D3Chart from './pages/D3ChartPage/D3Chart';
+import BarChart from './pages/BarChartPage/BarChart';
 // import Data from './Data/Data'
 
 export function App() {
@@ -24,6 +25,8 @@ export function App() {
         <Routes>
           <Route path="/about" element={<AboutPage />}>
           </Route>
+          <Route path="/signup" element={<SignupPage />}>
+          </Route>
           <Route path="/login" element={<LoginPage />}>
           </Route>
           <Route path="/contact" element={<ContactPage />}>
@@ -31,9 +34,9 @@ export function App() {
           <Route path="/chart" element={<ChartPage />}>
           </Route>
           <Route path="/d3_chart" element={<D3Chart />}>
+          </Route> 
+          <Route path="/bar_chart" element={<BarChart />}>
           </Route>
-          <Route path="/line_chart" element={<LineChart />}>
-          </Route>          
           {/* <Route path="/data" element={<Data />}> */}
           {/* </Route>           */}
           <Route path="/" element={<HomePage />}>
