@@ -1,13 +1,13 @@
-import express from 'express';
-import bcryptjs from 'bcryptjs';
-import jwt from 'jsonwebtoken';
-import cors from 'cors';
-import User from './models/User';
-import authenticateToken from './auth'; // Adjust the path as needed
-import { Router } from 'express';
-import dotenv from 'dotenv';
-import path from 'path';
-import BudgetItem from './models/BudgetItem';
+const express = require('express');
+const bcryptjs = require('bcryptjs');
+const jwt = require('jsonwebtoken');
+const cors = require('cors');
+const User = require('./models/User');
+const authenticateToken = require('./auth');
+const { Router } = require('express');
+const dotenv = require('dotenv');
+const path = require('path');
+const BudgetItem = require('./models/BudgetItem');
 
 dotenv.config();
 
@@ -19,11 +19,6 @@ router.use(cors());
 router.use(express.json());
 router.use(express.urlencoded({ extended: true }));
 
-// Define routes
-// router.get('/', (req, res) => {
-//     res.send('Hello, world!');
-// });
-
 router.post('/api/signup', async (req, res) => {
     console.log("Signup route reached.");
     try {
@@ -32,7 +27,8 @@ router.post('/api/signup', async (req, res) => {
         console.log("Transformed date:", date)
         const user = new User({
             username: req.body.username,
-            password: hashedPassword
+            password: hashedPassword,
+            date_created: date
         });
         const savedUser = await user.save();
         res.status(201).json({ userId: savedUser._id });
@@ -69,10 +65,6 @@ router.post('/api/logout', (req, res) => {
     // For JWT, there isn't much to do here since the token is stored client-side.
     // If using sessions, you would destroy the session here.
     // If using a blacklist, you would add the token to the blacklist here.
-
-    localStorage.removeItem('auth-token');
-    localStorage.removeItem('user-data');
-    history.push('/login');
     res.status(200).send('Logged out successfully');
 });
 
@@ -93,8 +85,6 @@ router.get('/api/budget', async (req, res) => {
         res.status(500).json({ message: err.message });
     }
 });
-
-// Assuming 'router' is your express router and 'BudgetItem' is your mongoose model
 
 
 router.post('/api/budget', async (req, res) => {
@@ -129,7 +119,7 @@ function transformDate(dateObj) {
     const minutes = String(dateObj.getMinutes()).padStart(2, '0');
     const seconds = String(dateObj.getSeconds()).padStart(2, '0');
 
-    date = `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+    let date = `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
 
     console.log("old date:", oldDate, "\nnew date:", date)
     return date;
@@ -139,5 +129,5 @@ router.use('*', (req, res) => {
     res.status(404).send('Endpoint not found');
 });
 
-
-export default router;
+module.exports = router;
+//export default router;

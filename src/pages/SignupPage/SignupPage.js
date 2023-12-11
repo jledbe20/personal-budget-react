@@ -20,7 +20,7 @@ const SignupPage = () => {
                 // Replace with your server's URL and endpoint as needed
                 const response = await axios.post('/signup', {
                     username,
-                    password
+                    password,
                 });
 
                 // Handle response here

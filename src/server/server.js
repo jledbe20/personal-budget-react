@@ -1,9 +1,9 @@
-import express from 'express';
-import mongoose from 'mongoose';
-import cors from 'cors';
-import path from 'path';
-import dotenv from 'dotenv';
-import bodyParser from 'body-parser';
+const express = require('express');
+const mongoose = require('mongoose');
+const cors = require('cors');
+const path = require('path');
+const dotenv = require('dotenv');
+const bodyParser = require('body-parser');
 
 dotenv.config();
 
@@ -15,7 +15,7 @@ app.use(express.json());
 app.use('/', express.static('public')); // Serve static files from the 'public' directory
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(express.static(__dirname));
+//app.use(express.static(__dirname));
 const JWT_TIMEOUT = process.env.JWT_TIMEOUT || '3m'; // default to 3 minutes
 
 // Correct the static files middleware to serve the build directory

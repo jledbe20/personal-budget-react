@@ -8,7 +8,7 @@ const BudgetTable = () => {
 
     // Fetch items from the server
     useEffect(() => {
-        axios.get('/budget')
+        axios.get('/api/budget')
              .then(response => setItems(response.data))
              .catch(error => setError(error)); // Set error state if request fails
     }, []);
@@ -35,7 +35,7 @@ const BudgetTable = () => {
                 color: newItem.color, // Include the color
             };
 
-            const response = await axios.post('/budget', itemToSubmit, {
+            const response = await axios.post('/api/budget', itemToSubmit, {
                 headers: {
                     'Content-Type': 'application/json'
                 }

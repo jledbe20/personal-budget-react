@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const url = "/budget";
+const url = "/api/budget";
 
 export const fetchBudgetData = async () => {
     try {
