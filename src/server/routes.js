@@ -1,5 +1,5 @@
 const express = require('express');
-const bcrypt = require('bcrypt');
+const bcryptjs = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const User = require('./models/User');
 const authenticateToken = require('./auth'); // Adjust the path as needed
@@ -15,7 +15,7 @@ router.get('/', (req, res) => {
 router.post('/signup', async (req, res) => {
     console.log("Signup route reached.");
     try {
-        const hashedPassword = await bcrypt.hash(req.body.password, 10);
+        const hashedPassword = await bcryptjs.hash(req.body.password, 10);
         const date = transformDate(new Date());
         console.log("Transformed date:", date)
         const user = new User({
@@ -39,7 +39,7 @@ router.post('/login', async (req, res) => {
             return res.status(400).send('Cannot find user');
         }
 
-        if (await bcrypt.compare(req.body.password, user.password)) {
+        if (await bcryptjs.compare(req.body.password, user.password)) {
             const token = jwt.sign({ _id: user._id }, process.env.TOKEN_SECRET);
             res.header('auth-token', token).send(token);
         } else {
