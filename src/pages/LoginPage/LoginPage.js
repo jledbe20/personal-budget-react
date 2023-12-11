@@ -1,24 +1,29 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import './LoginPage.css'; // Import the CSS file
+import './LoginPage.scss'; // Import the CSS file as a module
+import { useNavigate } from 'react-router-dom'; // Import useNavigate for redirection
 
 function LoginPage() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const navigate = useNavigate(); // Initialize useNavigate hook
 
     const handleLogin = async () => {
         try {
-            // Replace with your server's URL and endpoint as needed
             const response = await axios.post('http://localhost:5000/login', {
                 username,
                 password
             });
+            
+            // Save the token in localStorage
+            localStorage.setItem('auth-token', response.data);
+            
+            // Update the isLoggedIn state if you have it
+            // setIsLoggedIn(true); <- You would need to manage this state in context or a higher-level component
 
-            // Handle the response here
-            console.log('Login successful', response.data);
-            // You might want to save the token in the local storage or context for future requests
+            // Redirect to the "Table" page
+            navigate('/table');
         } catch (error) {
-            // Handle error here
             console.error('Login failed', error.response || error);
         }
     };

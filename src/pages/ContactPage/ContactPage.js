@@ -1,4 +1,5 @@
 import React from 'react';
+import './ContactPage.scss';
 
 function ContactPage() {
     return (

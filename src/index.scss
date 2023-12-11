@@ -531,51 +531,6 @@ td, th {
   
 }
 
-/* contact page */
-
-#contact-form ul {
-  margin-bottom: 20px;
-}
-
-#contact-form li {
-  margin-bottom: 10px;
-}
-
-#contact-form label,
-#contact form input[type=text],
-#contact form input[type=email],
-textarea {
-  display: block;
-  width: 50%;
-}
-
-#contact form input[type=text],
-input[type=email],
-textarea {
-  height: 35px;
-  padding: 0 10px;
-  /* font-size: 14px; */
-  border: 1px solid #dddddd;
-}
-
-#contact form textarea {
-  height: 200px;
-}
-
-#contact form input[type=submit],
-input[type=reset] {
-  padding: 10px 30px;
-  font-size: 18px;
-  color: #ffffff;
-  cursor: pointer;
-  background: darkslateblue;
-  border: 0 none;
-}
-
-#contact form #buttons {
-  text-align: center;
-}
-
 // .container {
 //   width: 65%;
 //   padding-left: 10%;
