@@ -25,6 +25,15 @@ ChartJS.register(
   BarController  // Register 'bar' controller
 );
 
+const pastelColors = [
+  'rgba(119, 221, 119, 0.5)', // pastel green
+  'rgba(119, 158, 203, 0.5)', // pastel blue
+  'rgba(207, 166, 205, 0.5)', // pastel purple
+  'rgba(253, 253, 150, 0.5)', // pastel yellow
+  'rgba(255, 179, 71, 0.5)',  // pastel orange
+  'rgba(255, 105, 97, 0.5)'   // pastel red
+];
+
 const BarChart = () => {
   const [chartData, setChartData] = useState({
     labels: [], // This will hold the titles of the budget items
@@ -39,15 +48,6 @@ const BarChart = () => {
     ],
   });
 
-  const pastelColors = [
-    'rgba(119, 221, 119, 0.5)', // pastel green
-    'rgba(119, 158, 203, 0.5)', // pastel blue
-    'rgba(207, 166, 205, 0.5)', // pastel purple
-    'rgba(253, 253, 150, 0.5)', // pastel yellow
-    'rgba(255, 179, 71, 0.5)',  // pastel orange
-    'rgba(255, 105, 97, 0.5)'   // pastel red
-  ];
-  
   useEffect(() => {
     const fetchAPI = async () => {
       try {
