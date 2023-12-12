@@ -1,0 +1,137 @@
+.table-container {
+    margin: 0 auto;
+    max-width: 80%;
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 0.9em;
+    font-family: sans-serif;
+    min-width: 400px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+.table thead tr {
+    background-color: #009879;
+    color: #ffffff;
+    text-align: left;
+}
+
+.table th,
+.table td {
+    padding: 12px 15px;
+}
+
+.table tbody tr {
+    border-bottom: 1px solid #dddddd;
+}
+
+.table tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+}
+
+.table tbody tr:last-of-type {
+    border-bottom: 2px solid #009879;
+}
+
+.table tbody tr.active-row {
+    font-weight: bold;
+    color: #009879;
+}
+
+.remove-btn {
+    background-color: #ff6347;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+.remove-btn:hover {
+    background-color: #ff2e00;
+}
+
+.budget-table-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.budget-table {
+    border-collapse: collapse;
+    margin: 0 auto;
+    /* Center the table */
+    width: 80%;
+    /* Set the width of the table */
+}
+
+.budget-table thead th {
+    background-color: #4CAF50;
+    color: white;
+    text-align: left;
+}
+
+.budget-table th,
+.budget-table td {
+    padding: 8px;
+    border: 1px solid #ddd;
+}
+
+.budget-table tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.budget-table tr:hover {
+    background-color: #ddd;
+}
+
+.budget-table td button {
+    width: 100%;
+    padding: 5px;
+    margin: 2px 0;
+    /* Space between buttons */
+    background-color: #f44336;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.budget-table td button:hover {
+    background-color: #d32f2f;
+}
+
+.form-container {
+    text-align: center;
+    margin: 20px;
+}
+
+.form-container form input[type="text"],
+.form-container form input[type="number"],
+.form-container form input[type="color"] {
+    padding: 10px;
+    margin: 10px 0;
+    /* Space between form inputs */
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.form-container form button {
+    padding: 10px 20px;
+    margin-top: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.form-container form button:hover {
+    background-color: #45a049;
+}

@@ -45,3 +45,19 @@
     background-color: #ed0dd76d;
   }
   
+  .link-like-button {
+    background: none;
+    border: none;
+    color: inherit; // or the color of your links
+    padding: 0;
+    font: inherit;
+    cursor: pointer;
+    outline: inherit;
+    text-decoration: underline; // if your links are underlined
+  
+    &:hover {
+      text-decoration: none; // if your links have hover effects
+      // add other hover styles if needed
+    }
+  }
+  

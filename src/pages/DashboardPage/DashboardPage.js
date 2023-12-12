@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import './DashboardPage.scss';
 
-const BudgetTable = () => {
+const DashboardPage = () => {
     const [items, setItems] = useState([]);
     const [newItem, setNewItem] = useState({ title: '', value: '', color: '#000000' });
     const [error, setError] = useState(null); // Add error state
@@ -9,9 +10,19 @@ const BudgetTable = () => {
     // Fetch items from the server
     useEffect(() => {
         axios.get('/api/budget')
-             .then(response => setItems(response.data))
-             .catch(error => setError(error)); // Set error state if request fails
+            .then(response => setItems(response.data))
+            .catch(error => setError(error)); // Set error state if request fails
     }, []);
+
+    const handleDelete = async (id) => {
+        try {
+            await axios.delete(`/api/budget/${id}`);
+            const updatedItems = items.filter(item => item._id !== id);
+            setItems(updatedItems);
+        } catch (error) {
+            setError(error);
+        }
+    };
 
     // Handle input change
     const handleChange = (e) => {
@@ -50,46 +61,28 @@ const BudgetTable = () => {
         }
     };
 
+
     return (
         <div>
-            {error && <p>Error fetching data: {error.message}</p>}
-            <form onSubmit={handleSubmit}>
-                <input
-                    type="text"
-                    name="title"
-                    value={newItem.title}
-                    onChange={handleChange}
-                    placeholder="Title"
-                    required
-                />
-                <input
-                    type="number"
-                    name="value"
-                    value={newItem.value}
-                    onChange={handleChange}
-                    placeholder="Value"
-                    required
-                />
-                <input
-                    type="color"
-                    name="color"
-                    value={newItem.color}
-                    onChange={handleChange}
-                    required
-                />
-                <button type="submit">Add Item</button>
-            </form>
+            {error && <p>Error: {error.message}</p>}
+            <div>
+                {error && <p>Error fetching data: {error.message}</p>}
+
+
+
+            </div>
             <table>
                 <thead>
                     <tr>
                         <th>Title</th>
                         <th>Value</th>
                         <th>Color</th>
+                        <th>Remove</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {items.map((item, index) => (
-                        <tr key={index}>
+                    {items.map(item => (
+                        <tr key={item._id}>
                             <td>{item.title}</td>
                             <td>{item.value}</td>
                             <td>
@@ -101,12 +94,43 @@ const BudgetTable = () => {
                                     }}
                                 />
                             </td>
+                            <td>
+                                <button onClick={() => handleDelete(item._id)}>
+                                    Remove
+                                </button>
+                            </td>
                         </tr>
                     ))}
                 </tbody>
             </table>
+            <form onSubmit={handleSubmit}>
+                    <input
+                        type="text"
+                        name="title"
+                        value={newItem.title}
+                        onChange={handleChange}
+                        placeholder="Title"
+                        required
+                    />
+                    <input
+                        type="number"
+                        name="value"
+                        value={newItem.value}
+                        onChange={handleChange}
+                        placeholder="Value"
+                        required
+                    />
+                    <input
+                        type="color"
+                        name="color"
+                        value={newItem.color}
+                        onChange={handleChange}
+                        required
+                    />
+                    <button type="submit">Add Item</button>
+                </form>
         </div>
     );
 };
 
-export default BudgetTable;
+export default DashboardPage;

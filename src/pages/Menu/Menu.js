@@ -7,7 +7,9 @@ import { useNavigate } from 'react-router-dom';
 
 function Menu() {
   const navigate = useNavigate();
-  const [isLoggedIn, setIsLoggedIn] = useState(localStorage.getItem('auth-token') !== null);
+// eslint-disable-next-line no-unused-vars
+const [isLoggedIn, setIsLoggedIn] = useState(localStorage.getItem('auth-token') !== null);
+
 
   const handleLogout = async () => {
     localStorage.removeItem('auth-token');
@@ -34,13 +36,15 @@ function Menu() {
         <li><Link to="/bar_chart">Bar Chart</Link></li>
 
         <li className="dropdown">
-          <button className="dropbtn">Account</button>
-          <div className="dropdown-content">
-            <Link to="/login">Login</Link>
-            <Link to="/signup">Signup</Link>
-            <button onClick={handleLogout}>Logout</button>
-          </div>
-        </li>
+        <button className="dropbtn">Account</button>
+        <div className="dropdown-content">
+          <Link to="/login">Login</Link>
+          <Link to="/signup">Signup</Link>
+          {isLoggedIn && (
+            <button onClick={handleLogout} className="link-like-button">Logout</button>
+          )}
+        </div>
+      </li>
 
         <li className="dropdown">
           <button className="dropbtn">More</button>

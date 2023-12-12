@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import './LoginPage.scss'; // Import the CSS file as a module
-import { useNavigate } from 'react-router-dom'; // Import useNavigate for redirection
+import './LoginPage.scss'; 
+import { useNavigate } from 'react-router-dom'; 
 
 function LoginPage() {
     const [username, setUsername] = useState('');
@@ -28,7 +28,8 @@ function LoginPage() {
     };
 
     return (
-        <div className="login-container"> {/* Add a container class */}
+        
+        <div className="login-container">
             <h1>Login</h1>
             <form onSubmit={(e) => e.preventDefault()}>
                 <label>
