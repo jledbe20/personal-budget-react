@@ -39,6 +39,15 @@ const BarChart = () => {
     ],
   });
 
+  const pastelColors = [
+    'rgba(119, 221, 119, 0.5)', // pastel green
+    'rgba(119, 158, 203, 0.5)', // pastel blue
+    'rgba(207, 166, 205, 0.5)', // pastel purple
+    'rgba(253, 253, 150, 0.5)', // pastel yellow
+    'rgba(255, 179, 71, 0.5)',  // pastel orange
+    'rgba(255, 105, 97, 0.5)'   // pastel red
+  ];
+  
   useEffect(() => {
     const fetchAPI = async () => {
       try {
@@ -48,8 +57,9 @@ const BarChart = () => {
           datasets: [
             {
               label: 'Budget Values',
-              backgroundColor: 'rgba(255, 99, 132, 0.5)',
-              borderColor: 'rgb(255, 99, 132)',
+              // Map each item to a color, looping back to the start if there are more items than colors
+              backgroundColor: data.map((_, index) => pastelColors[index % pastelColors.length]),
+              borderColor: data.map((_, index) => pastelColors[index % pastelColors.length].replace('0.5', '1')),
               borderWidth: 1,
               data: data.map(item => item.value), // Use the value for the bar lengths
             },
@@ -59,12 +69,13 @@ const BarChart = () => {
         console.error('Error fetching data:', error);
       }
     };
-
+  
     fetchAPI();
   }, []);
-
+  
   return (
-    <div>
+    
+           <div className="chartDiv" style={{ width: 1000, textAlign: "center" }}>
       <h2>Budget Bar Chart</h2>
       <Bar data={chartData} />
     </div>
