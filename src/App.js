@@ -40,10 +40,6 @@ export function App() {
           </Route>
           <Route path="/dashboard" element={<DashboardPage />}>
           </Route>
-          {/* <Route path="/data" element={<Data />}> */}
-          {/* </Route>           */}
-          <Route path="/" element={<HomePage />}>
-          </Route>
         </Routes>
       </div>
       <HomePage />
