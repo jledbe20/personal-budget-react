@@ -51,7 +51,7 @@ router.post('/api/login', async (req, res) => {
             const token = jwt.sign({ _id: user._id }, process.env.TOKEN_SECRET);
             res.header('auth-token', token).send(token);
         } else {
-            res.status(403).send('Login not allowed');
+            res.status(403).send('Login forbidden!');
         }
     } catch (error) {
         console.error('Login Error:', error);
@@ -62,16 +62,13 @@ router.post('/api/login', async (req, res) => {
 
 router.post('/api/logout', (req, res) => {
     console.log("Logout route reached.");
-    // For JWT, there isn't much to do here since the token is stored client-side.
-    // If using sessions, you would destroy the session here.
-    // If using a blacklist, you would add the token to the blacklist here.
-    res.status(200).send('Logged out successfully');
+    res.status(200).send('Logged out successfully.');
 });
 
 
 router.get('/api/protected', authenticateToken, (req, res) => {
-    // This route is now protected with JWT
-    res.send('Protected data');
+    // This route is protected with JWT
+    res.send('Protected data.');
 });
 
 
@@ -89,7 +86,7 @@ router.get('/api/budget', async (req, res) => {
 
 router.post('/api/budget', async (req, res) => {
     console.log("Budget POST route reached.");
-    console.log(req.body); // Log the request body to see what is being sent
+    console.log(req.body); // Log the request body
     const newItem = new BudgetItem({
         custom_id: req.body.custom_id,
         title: req.body.title,
@@ -101,11 +98,19 @@ router.post('/api/budget', async (req, res) => {
         const savedItem = await newItem.save();
         res.status(201).json(savedItem);
     } catch (err) {
-        console.error('Error adding item:', err); // Log the detailed error
+        console.error('Error adding item:', err); // Log the error
         res.status(400).json({ message: err.message });
     }
 });
 
+router.delete('/api/budget/:id', async (req, res) => {
+    try {
+      await BudgetItem.findByIdAndDelete(req.params.id);
+      res.status(204).send(); // No content
+    } catch (error) {
+      res.status(500).json({ message: error.message });
+    }
+  });
 
 // Transform date
 function transformDate(dateObj) {
