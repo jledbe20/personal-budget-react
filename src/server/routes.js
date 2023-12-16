@@ -44,7 +44,7 @@ router.post('/api/login', async (req, res) => {
     try {
         const user = await User.findOne({ username: req.body.username });
         if (user == null) {
-            return res.status(400).send('Cannot find user');
+            return res.status(400).send('Cannot find user.');
         }
 
         if (await bcryptjs.compare(req.body.password, user.password)) {
