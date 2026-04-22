@@ -1,70 +1,111 @@
-# Getting Started with Create React App
+# Personal Budget React
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+React version of the Personal Budget class project. It combines a React frontend with an Express/Mongoose API, JWT authentication, and budget visualizations.
 
-## Available Scripts
+## Features
 
-In the project directory, you can run:
+- React single-page frontend with routed pages.
+- Signup and login API routes.
+- JWT-protected demo endpoint.
+- MongoDB persistence through Mongoose.
+- Budget item read/create/delete API.
+- Chart.js, React Chart.js, and D3 budget visualizations.
+- Express server can serve the production React build.
 
-### `npm start`
+## Stack
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- React 18
+- React Router
+- Sass
+- Axios
+- Chart.js / react-chartjs-2
+- D3
+- Node.js
+- Express
+- MongoDB
+- Mongoose
+- bcryptjs
+- JSON Web Tokens
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Project Structure
 
-### `npm test`
+```text
+src/App.js                  React route layout
+src/pages/                  React page components
+src/pages/Data/Data.js      Budget API client
+src/server/server.js        Express server entry point
+src/server/routes.js        API routes
+src/server/models/          Mongoose models
+src/server/json/            Sample JSON budget data
+public/                     Static CRA public assets
+build/                      Production build output
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Frontend Routes
 
-### `npm run build`
+```text
+/about
+/signup
+/login
+/contact
+/chart
+/d3_chart
+/bar_chart
+/dashboard
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## API Routes
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```text
+POST   /api/signup       Creates a user with a hashed password
+POST   /api/login        Logs in and returns a JWT
+POST   /api/logout       Demo logout route
+GET    /api/protected    JWT-protected demo route
+GET    /api/budget       Returns budget items from MongoDB
+POST   /api/budget       Creates a budget item
+DELETE /api/budget/:id   Deletes a budget item
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Environment
 
-### `npm run eject`
+The server expects these environment variables:
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+```text
+MONGO_URI
+TOKEN_SECRET
+PORT
+```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+`PORT` defaults to `5000`.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## Run Locally
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+Start the React development server:
 
-## Learn More
+```powershell
+npm install
+npm start
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Start the Express API server in another terminal:
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+```powershell
+node src\server\server.js
+```
 
-### Code Splitting
+Open:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+```text
+http://localhost:3000
+```
 
-### Analyzing the Bundle Size
+The React development server proxies API requests to:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+```text
+http://localhost:5000
+```
 
-### Making a Progressive Web App
+## Notes
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- Do not publish real `.env` values or database credentials.
+- `src/server/server.js` contains a fallback MongoDB URI; move deployment-specific configuration to environment variables before making the repo public.
